@@ -5,32 +5,32 @@
       <node id="1" label="1">
         <ns0:color b="204" g="0" r="0" />
         <ns0:size value="1" />
-        <ns0:position x="0.427939400098" y="0.0949311046485" z="0.0" />
+        <ns0:position x="0.433370066295" y="0.240189445771" z="0.0" />
       </node>
       <node id="2" label="2">
         <ns0:color b="204" g="0" r="0" />
         <ns0:size value="1" />
-        <ns0:position x="0.882029317615" y="0.896104368835" z="0.0" />
+        <ns0:position x="0.425215082353" y="0.362150059143" z="0.0" />
       </node>
       <node id="3" label="3">
         <ns0:color b="204" g="0" r="0" />
         <ns0:size value="1" />
-        <ns0:position x="0.380704978265" y="0.302865652472" z="0.0" />
+        <ns0:position x="0.602444380384" y="0.207373266349" z="0.0" />
       </node>
       <node id="4" label="4">
         <ns0:color b="204" g="0" r="0" />
         <ns0:size value="1" />
-        <ns0:position x="0.446094599252" y="0.996281634252" z="0.0" />
+        <ns0:position x="0.101388014349" y="0.920096765511" z="0.0" />
       </node>
       <node id="5" label="5">
         <ns0:color b="204" g="0" r="0" />
         <ns0:size value="1" />
-        <ns0:position x="0.562530609629" y="0.858304203893" z="0.0" />
+        <ns0:position x="0.277642624521" y="0.490069952201" z="0.0" />
       </node>
       <node id="6" label="6">
         <ns0:color b="204" g="0" r="0" />
         <ns0:size value="1" />
-        <ns0:position x="0.361505946817" y="0.0014400318353" z="0.0" />
+        <ns0:position x="0.0394937955549" y="0.137763409166" z="0.0" />
       </node>
     </nodes>
     <edges>

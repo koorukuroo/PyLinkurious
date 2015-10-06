@@ -51,7 +51,7 @@ def node_info(G, node_name, alpha=0.6, r=0, g=0, b=204, x=0, y=0, size=1):
         'size': size}
     return G
 
-def make_html(drawEdges, filename='./NetworkX_Graph.html'):
+def make_html(drawEdges, gexfname='./NetworkX_Graph.gexf', filename='./NetworkX_Graph.html'):
     html = """
 <!-- START SIGMA IMPORTS -->
 <script src="https://cdn.rawgit.com/Linkurious/linkurious.js/develop/src/sigma.core.js"></script>
@@ -126,7 +126,7 @@ def make_html(drawEdges, filename='./NetworkX_Graph.html'):
  * configuration object. The plugin will just add the "graph" key to it
  * before the instanciation.
  */
-sigma.parsers.gexf('./NetworkX_Graph.gexf', {
+sigma.parsers.gexf('$gexfname', {
   container: 'graph-container',
   settings: {
     drawEdges: $drawEdges
@@ -134,7 +134,7 @@ sigma.parsers.gexf('./NetworkX_Graph.gexf', {
 }, 1);
 </script>
     """
-    s = Template(html).safe_substitute(drawEdges = drawEdges)
+    s = Template(html).safe_substitute(drawEdges = drawEdges, gexfname = gexfname)
     HTMLfile = open(filename, 'w')
     HTMLfile.write(s)
     HTMLfile.close()
