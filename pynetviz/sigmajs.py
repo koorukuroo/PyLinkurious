@@ -5,11 +5,11 @@ from IPython.display import display, HTML
 import networkx as nx
 
 '''
-    PyNetViz(Python Network Vizualization for linkurious) as nvl
+    PyNetViz(Python Network Vizualization for sigmajs) as nvs
 
-    File name: linkurious.py
+    File name: sigmajs.py
     Author: Kyunghoon Kim
-    Date created: 10/14/2015
+    Date created: 10/06/2015
     Date last modified: 10/14/2015
     Python Version: 2.7
 '''
@@ -51,65 +51,46 @@ def node_info(G, node_name, alpha=0.6, r=0, g=0, b=204, x=0, y=0, size=1):
         'size': size}
     return G
 
-def make_html(url='../src/iframe/pylinkurious.html', filename='./NetworkX_Graph.html'):
+def make_html(drawEdges, gexfname='./NetworkX_Graph.gexf', filename='./NetworkX_Graph.html'):
     html = """
-<!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>PyLinkurious</title>
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-<body>
-
-  <iframe name="pylinkurious-iframe"
-    src="$url?cb=setUpFrame"
-    width="100%"
-    height="500"
-    frameborder="0"
-    webkitallowfullscreen mozallowfullscreen allowfullscreen>
-  </iframe>
-
-  <script>
-  // Function called once the iframe is initialized:
-  function setUpFrame() {
-
-    // Get Linkurious.js instance:
-    var LK = window.frames['pylinkurious-iframe'].LK;
-
-    // Update UI components
-    LK.updateUI();
-
-    // Load a graph sample:
-    LK.sigma.graph.read({
-      nodes: [
-        { id: 'n0', label: 'Node 0', x: 0, y: 0, size: 1 },
-        { id: 'n1', label: 'Node 1', x: 50, y: -10, size: 1 }
-      ],
-      edges: [
-        {
-          id: 'e0',
-          label: 'Edge 0',
-          source: 'n0',
-          target: 'n1',
-          size: 1
-        }
-      ]
-    });
-
-    // Display the graph:
-    LK.sigma.refresh();
-    LK.plugins.locate.center();
-
-    console.log('nb nodes', LK.sigma.graph.nodes().length);
+<!-- START SIGMA IMPORTS -->
+<script src="https://rawgit.com/Linkurious/linkurious.js/develop/dist/sigma.min.js"></script>
+<!-- END SIGMA IMPORTS -->
+<!--<script src="https://cdn.rawgit.com/Linkurious/linkurious.js/develop/plugins/sigma.parsers.gexf/gexf-parser.js"></script>-->
+<!--<script src="https://cdn.rawgit.com/Linkurious/linkurious.js/develop/plugins/sigma.parsers.gexf/sigma.parsers.gexf.js"></script>-->
+<div id="container">
+  <style>
+    #graph-container {
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+    }
+  </style>
+  <div id="graph-container"></div>
+</div>
+<script>
+/**
+ * Here is just a basic example on how to properly display a graph
+ * exported from Gephi in the GEXF format.
+ *
+ * The plugin sigma.parsers.gexf can load and parse the GEXF graph file,
+ * and instantiate sigma when the graph is received.
+ *
+ * The object given as the second parameter is the base of the instance
+ * configuration object. The plugin will just add the "graph" key to it
+ * before the instanciation.
+ */
+sigma.parsers.gexf('$gexfname', {
+  container: 'graph-container',
+  settings: {
+    drawEdges: $drawEdges
   }
-
-  </script>
-</body>
-</html>
+}, 1);
+</script>
     """
-    s = Template(html).safe_substitute(url=url)
+    s = Template(html).safe_substitute(drawEdges = drawEdges, gexfname = gexfname)
     HTMLfile = open(filename, 'w')
     HTMLfile.write(s)
     HTMLfile.close()
@@ -148,5 +129,4 @@ def view_html(filename='./NetworkX_Graph.html', height=500):
     </iframe>"""
     s = Template(html).safe_substitute(filename = filename, height = height)
     display(HTML(s))
-
 
