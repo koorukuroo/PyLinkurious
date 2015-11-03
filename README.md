@@ -13,3 +13,9 @@ http://nbviewer.ipython.org/github/koorukuroo/PyLinkurious/blob/master/Basic_Exa
   -  e.g., linkurious_url = 'http://127.0.0.1:8000'
 4. Run all cell and you can meet Linkurious
   -  ![](http://i.imgur.com/wdp9qIl.png)
+
+
+### To do list
+- load gexf in linkurious
+- generate gexf with networkx
+- control with pandas
